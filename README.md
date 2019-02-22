@@ -39,7 +39,7 @@ curl http://127.0.0.1:5000/healthcheck
 ## Monitoring
 I have included a __monitor.yml__ docker compose configuration to demonstrate some monitoring options. You can start the monitoring tools with:
 
-        $ make monitor
+        $ make run YAML='monitor.yml'
 
 The most basic monitoring available is `docker stats` which provides metrics on cpu, memory, disk, and network stats.  However, these data are only displayed on the terminal, not persisted.
 
@@ -56,10 +56,16 @@ Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/goog
 
 [InfluxDb](https://www.influxdata.com/) is an example of a time series database suitable for persisting docker performance metrics. Cadvisor can be configured to use this database.
 
-For a more powerful and expressive option for viewing and monitoring metrics is [Grafana](https://grafana.com/). This tool greatly improves the experience over cadvisor and latest versions provide alerting and annotation features. Grafana requires some post installation configuration to make the necessary connections with InfluxDb which can be found in this [blog post](https://www.brianchristner.io/how-to-setup-docker-monitoring/). You can login using 'admin:admin'.
+For a more powerful and expressive option for viewing and monitoring metrics is [Grafana](https://grafana.com/). This tool greatly improves the experience over cadvisor and latest versions provide alerting and annotation features. Access to historical data is only limited by the amount of disk space available. Grafana requires some post installation configuration to make the necessary connections with InfluxDb which can be found in this [blog post](https://www.brianchristner.io/how-to-setup-docker-monitoring/). You can login using 'admin:admin'.
 
         http://localhost:3000/
 
 There are many other options including web-hosted solutions. This [post](https://code-maze.com/top-docker-monitoring-tools/) might be helpful.
 
 Remember, the data provided by `docker stats` is only related to the running containers. It doesn't tell us about the physical host running the docker engine and application performance is also important. A production quality monitoring system needs to inlude all of these metric sources, but for that we need other tools which include `Application Performance Monitors`, or APM. Examples are [New Relic](https://newrelic.com/) and [APPDYNAMICS](https://www.appdynamics.com/) which add many more metrics types associated with running code and the hardware metrics of hosts and containers.
+
+Once you are collecting metrics then you can connect these tools with notification and alerting systems such as [PagerDuty](https://www.pagerduty.com/) and [Slack](https://slack.com/) so that engineers can take corrective action when performance thresholds are execeeded.
+
+When you are finished with the monitoring demo apps you can cleanup the deployment with:
+
+        $ make clean YAML='monitor.yml'
