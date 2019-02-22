@@ -12,7 +12,7 @@ Other tools needed to build and run tests:
 - GNU Make 3.81
 - curl 7.61.1
 
-## Start the application
+## Test the application
 I chose GNU Make to manage my development lifecycle to build, run and test this demo.
 
     $ make test
