@@ -4,6 +4,7 @@ from flask import request
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 import json
+import time
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
@@ -45,5 +46,12 @@ def message_get(message_id):
         return json.dumps({'status': 'FAIL', 'error': 'message_id({}) must exist'.format(message_id)})
 
 if __name__ == '__main__':
-    db.create_all()
-    app.run()
+    # postgres needs a moment to startup so wait a little bit if needed
+    # would be better to do some psql magic but this is good enough for demo
+    try:
+        db.create_all()
+    except:
+        time.sleep(5)
+        db.create_all()
+    # add host param because docker
+    app.run(host='0.0.0.0')

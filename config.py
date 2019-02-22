@@ -6,6 +6,6 @@ class Config(object):
     DEBUG = True
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'this-really-needs-to-be-changed'
+    SECRET_KEY = 'postgres'
     # e.g. DATABASE_URL='postgresql://postgres:postgres@localhost:5432/groundspeed_devops'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']

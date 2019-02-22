@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  web:
+    image: hello:latest
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/groundspeed_devops
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: groundspeed_devops
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
