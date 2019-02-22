@@ -45,7 +45,18 @@ The most basic monitoring available is `docker stats` which provides metrics on 
 
         $ docker stats
 
-These hardware metrics, that is cpu, memory, and i/o are important to watch because they provide the most basic indications of system health and can help to identify over and under-subscribed resources in need of improvement to increase performance and efficiency, and possibly to reduce costs.
+        CONTAINER ID   NAME                    CPU %   MEM USAGE / LIMIT     MEM %  NET I/O          BLOCK I/O           PIDS
+        98b46bf616e7   devops-takehome_web_1   0.37%   50.45MiB / 1.952GiB   2.52%  6.51kB / 4.64kB  0B / 0B             3
+        027c674a3f71   devops-takehome_db_1    0.31%   13.67MiB / 1.952GiB   0.68%  5.94kB / 5.39kB  20.5kB / 123MB      9
+
+1. `CONTAINER ID` and `Name`: the ID and name of the container
+1. `CPU %`and `MEM %`: the percentage of the host’s CPU and memory the container is using
+1. `MEM USAGE / LIMIT`: the total memory the container is using, and the total amount of memory it is allowed to use
+1. `NET I/O`: The amount of data the container has sent and received over its network interface
+1. `BLOCK I/O`: The amount of data the container has read to and written from block devices on the host
+1. `PIDs`: the number of processes or threads the container has created
+
+These hardware metrics are important to watch because they provide the most basic indications of system health and can help to identify over and under-subscribed resources in need of improvement to increase performance and efficiency, and possibly to reduce costs.
 
 For example, we might want to be notified if cpu usage is consistently over some threshold, perhaps 90% or if there are sudden increases that can be correlated with increased application response time.
 
