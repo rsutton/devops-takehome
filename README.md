@@ -72,6 +72,7 @@ Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/goog
 <img src='./img/cadvisor.png' />
 <b>Figure 1 - cadvisor CPU</b>
 
+
 Nice, but still no persistent storage for trend analysis. For this we need a database. The cadvisor dashboard is available through your browser:
 
         http://localhost:8080/docker/
@@ -84,12 +85,14 @@ For a more powerful and expressive option for viewing and monitoring metrics is 
 <img src='./img/grafana.png' />
 Figure 2 - grafana dashboard
 
+
 Grafana requires some post installation configuration to make the necessary connections with InfluxDb which can be found in this [blog post](https://www.brianchristner.io/how-to-setup-docker-monitoring/). You can login using 'admin:admin'.
 
         http://localhost:3000/
 
 <img src='./img/grafana-config.png' />
 Figure 3 - grafana/influx configuration
+
 
 There are many other options including web-hosted solutions. This [post](https://code-maze.com/top-docker-monitoring-tools/) might be helpful.
 
