@@ -69,10 +69,12 @@ For example, we might want to be notified if cpu usage is consistently over some
 
 Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/google/cadvisor/) which provides graphical display of docker stats output.
 
+<br>
 <div align='center'>
 <img src='./img/cadvisor.png' />
 <b>Figure 1 - cadvisor CPU</b>
 </div>
+<br>
 
 Nice, but still no persistent storage for trend analysis. For this we need a database. The cadvisor dashboard is available through your browser:
 
@@ -83,19 +85,23 @@ Nice, but still no persistent storage for trend analysis. For this we need a dat
 
 For a more powerful and expressive option for viewing and monitoring metrics is [Grafana](https://grafana.com/). This tool greatly improves the experience over cadvisor and latest versions provide alerting and annotation features. Access to historical data is only limited by the amount of disk space available. It is generally sufficient to use a maximum collection granularity of 1 minute intervals and in practice these are averaged over some larger time period to reduce the disk storage requirements.
 
+<br>
 <div align='center'>
 <img src='./img/grafana.png' />
 Figure 2 - grafana dashboard
 </div>
+<br>
 
 Grafana requires some post installation configuration to make the necessary connections with InfluxDb which can be found in this [blog post](https://www.brianchristner.io/how-to-setup-docker-monitoring/). You can login using 'admin:admin'.
 
         http://localhost:3000/
 
+<br>
 <div align='center'>
 <img src='./img/grafana-config.png' />
 Figure 3 - grafana/influx configuration
 </div>
+<br>
 
 There are many other options including web-hosted solutions. This [post](https://code-maze.com/top-docker-monitoring-tools/) might be helpful.
 
