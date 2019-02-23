@@ -67,7 +67,12 @@ According to [The Use Method](http://www.brendangregg.com/usemethod.html) by Bre
 
 For example, we might want to be notified if cpu usage is consistently over some threshold, perhaps 90% or if there are sudden increases that can be correlated with increased application response time, i.e. saturation.
 
-Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/google/cadvisor/) which provides graphical display of docker stats output. Nice, but still no persistent storage for trend analysis. For this we need a database. The cadvisor dashboard is available through your browser:
+Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/google/cadvisor/) which provides graphical display of docker stats output.
+
+<img src='./img/cadvisor.png' />
+<b>Figure 1 - cadvisor CPU</b>
+
+Nice, but still no persistent storage for trend analysis. For this we need a database. The cadvisor dashboard is available through your browser:
 
         http://localhost:8080/docker/
 
@@ -76,9 +81,15 @@ Building on top of docker stats we have [cadvisor](https://hub.docker.com/r/goog
 
 For a more powerful and expressive option for viewing and monitoring metrics is [Grafana](https://grafana.com/). This tool greatly improves the experience over cadvisor and latest versions provide alerting and annotation features. Access to historical data is only limited by the amount of disk space available. It is generally sufficient to use a maximum collection granularity of 1 minute intervals and in practice these are averaged over some larger time period to reduce the disk storage requirements.
 
+<img src='./img/grafana.png' />
+Figure 2 - grafana dashboard
+
 Grafana requires some post installation configuration to make the necessary connections with InfluxDb which can be found in this [blog post](https://www.brianchristner.io/how-to-setup-docker-monitoring/). You can login using 'admin:admin'.
 
         http://localhost:3000/
+
+<img src='./img/grafana-config.png' />
+Figure 3 - grafana/influx configuration
 
 There are many other options including web-hosted solutions. This [post](https://code-maze.com/top-docker-monitoring-tools/) might be helpful.
 
